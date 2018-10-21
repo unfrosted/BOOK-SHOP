@@ -1,5 +1,3 @@
 <h1>Book-list component</h1>
-<div *ngFor="let book of books">
-  <div>{{book.name}}</div>
-  <img src={{book.img}}>
-</div>
+<app-book *ngFor="let book of books" [book]="book" (buy)="onBuy($event)"></app-book>
+

@@ -1,7 +1,8 @@
 <h1>
   cart
 </h1>
-<div *ngFor="let item of cartItems">
-  <div>{{item.name}}</div>
-  <img src={{item.img}}>
-</div>
+<app-cart-item *ngFor="let item of cartItems" [item]="item" (increaseQ)="onIncreaseQ($event)" (decreaseQ)="onDecreaseQ($event)">
+
+</app-cart-item>
+
+<button class="btn btn-primary">Process Order</button>
