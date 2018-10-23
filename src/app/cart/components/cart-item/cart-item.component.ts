@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { CartItemModel } from '../../models/cart-item.model';
 import { BookModel } from 'src/app/products/models/book.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -17,7 +18,7 @@ export class CartItemComponent implements OnInit {
    @Output()
    increaseQ: EventEmitter<CartItemModel> = new EventEmitter<CartItemModel>();
 
-  constructor() { }
+
 
   ngOnInit() {
   }

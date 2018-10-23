@@ -1,3 +1,4 @@
-<div>{{book.name}}</div>
+<div>{{book.name| titlecase }}</div>
 <img [ngStyle]="setStyle()" src={{book.img}}>
+<p>{{book.price| currency }}</p>
 <button class="btn btn-success" (click)="onBuy()">Buy</button>

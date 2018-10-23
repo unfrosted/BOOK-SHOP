@@ -1,6 +1,9 @@
-<div class=" container">
-<div>{{item.name}}</div>
+<div class="container card">
+<div class="btn btn-link justify-right">X</div>
+<div class="card-body">
+<div>{{item.name| titlecase}}</div>
 <img src={{item.img}}>
+<p>{{item.price| currency}}</p>
 <div class="row">
 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
   <button type="button" class="btn btn-primary" (click)="decrQuantity()" >+</button>
@@ -10,4 +13,4 @@
 <input type="text" value="{{item.quantity}}">
   </div>
 </div>
-</div></div>
+</div></div></div>

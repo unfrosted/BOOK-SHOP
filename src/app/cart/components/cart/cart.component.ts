@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CartItemModel } from '../../models/cart-item.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,25 +10,17 @@ import { CartItemModel } from '../../models/cart-item.model';
 export class CartComponent implements OnInit {
   private cartItems: Array<CartItemModel>;
 
-  constructor() {
+  constructor(private cartService: CartService) {
 
    }
 
   ngOnInit() {
-    this.cartItems = [
-      {'id': 1, 'name': 'Some Book1', 'img': '//image.shutterstock.com/image-vector/vector-book-icon-450w-380526094.jpg', 'quantity': 1},
-      {'id': 2, 'name': 'Some Book2', 'img': '//image.shutterstock.com/image-vector/vector-book-icon-450w-380526094.jpg', 'quantity': 1},
-      {'id': 3, 'name': 'Some Book2', 'img': '//image.shutterstock.com/image-vector/vector-book-icon-450w-380526094.jpg', 'quantity': 1}
-    ];
+    this.cartItems = this.cartService.getCartItems();
   }
 onIncreaseQ(item: CartItemModel) {
-  const idx = this.cartItems.findIndex(p => p.id === item.id);
-  if (this.cartItems[idx].quantity > 0) {
-  this.cartItems[idx].quantity--;
+  this.cartService.decQuantity(item);
   }
-}
 onDecreaseQ(item: CartItemModel) {
-  const idx = this.cartItems.findIndex(p => p.id === item.id);
-  this.cartItems[idx].quantity++;
+  this.cartService.incQuantity(item);
 }
 }

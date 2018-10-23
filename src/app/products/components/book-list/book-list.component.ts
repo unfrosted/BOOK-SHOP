@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookModel } from '../../models/book.model';
+import { BooksService } from '../../services/books.service';
+import { CartService } from 'src/app/cart/services/cart.service';
 
 @Component({
   selector: 'app-book-list',
@@ -7,22 +9,19 @@ import { BookModel } from '../../models/book.model';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  private books: Array<BookModel>;
+  public booksP: Promise<Array<BookModel>>;
 
-  constructor() {
+  constructor(private booksService: BooksService, private cartService: CartService) {
 
    }
 
   ngOnInit() {
-    this.books = [
-      {'id': 1, 'name': 'Some Book1', 'img': '//image.shutterstock.com/image-vector/vector-book-icon-450w-380526094.jpg'},
-      {'id': 2, 'name': 'Some Book2', 'img': '//image.shutterstock.com/image-vector/vector-book-icon-450w-380526094.jpg'},
-      {'id': 3, 'name': 'Some Book2', 'img': '//image.shutterstock.com/image-vector/vector-book-icon-450w-380526094.jpg'}
-    ];
+
+    this.booksP = this.booksService.getBooksAsync();
   }
 
   onBuy(book: BookModel) {
-    console.log(book);
+    this.cartService.addToCart(book);
   }
 
 
