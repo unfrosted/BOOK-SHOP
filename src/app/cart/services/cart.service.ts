@@ -7,14 +7,19 @@ import { BookModel } from 'src/app/products/models/book.model';
 })
 export class CartService {
   public cartItems: Array<CartItemModel>;
+  public totalQuantity: number;
+  public totalPrice: number;
 
   constructor() {
     this.cartItems = new Array<CartItemModel>();
+    this.totalPrice = 0;
+    this.totalQuantity = 0;
    }
 
    incQuantity(cartItem: CartItemModel, amount: number = 1) {
       const idx = this.getIndex(cartItem.id);
       this.cartItems[idx].quantity += amount;
+      this.updateTotals();
    }
 
    decQuantity(cartItem: CartItemModel, amount: number = 1) {
@@ -22,6 +27,7 @@ export class CartService {
     if (this.cartItems[idx].quantity > 1) {
       this.cartItems[idx].quantity -= amount;
     }
+    this.updateTotals();
 
   }
 
@@ -40,16 +46,29 @@ export class CartService {
           cartItem = Object.assign({quantity: 1}, book);
           this.cartItems.push(cartItem);
       } else {
-          
           this.incQuantity(this.cartItems[idx])
       }
-   }
+      this.updateTotals();
+  }
 
    delFromCart(cartItem: CartItemModel) {
-      this.cartItems.slice(1, this.getIndex(cartItem.id));
+     const idx = this.getIndex(cartItem.id);
+    if (idx !== -1) {
+     this.cartItems = this.cartItems.splice(1, idx );
+     this.updateTotals();
+    }
    }
 
-   updateTotals() {}
+   updateTotals() {
+      let newTotalQuantity = 0;
+      let newTotalPrice = 0;
+      for (const element of this.cartItems){
+        newTotalQuantity += element.quantity;
+        newTotalPrice += element.price;
+      }
+      this.totalPrice = newTotalPrice;
+      this.totalQuantity = newTotalQuantity;
+   }
 
 
 }

@@ -17,10 +17,19 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.cartItems = this.cartService.getCartItems();
   }
+
+  onDel(item: CartItemModel) {
+     this.cartService.delFromCart(item);
+     this.cartItems = this.cartService.getCartItems();
+  }
+
 onIncreaseQ(item: CartItemModel) {
   this.cartService.decQuantity(item);
   }
+
 onDecreaseQ(item: CartItemModel) {
   this.cartService.incQuantity(item);
 }
+
+
 }

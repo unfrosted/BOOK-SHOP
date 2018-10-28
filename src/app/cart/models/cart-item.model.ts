@@ -5,8 +5,8 @@ export class CartItemModel extends BookModel {
         public id: number,
         public name: string,
         public img: string,
-        public quantity: number,
-        public price: number
+        public price: number,
+        public quantity: number
     ) {
         super(id, name, img, price);
     }

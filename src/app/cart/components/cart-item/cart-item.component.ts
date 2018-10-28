@@ -3,6 +3,7 @@ import { CartItemModel } from '../../models/cart-item.model';
 import { BookModel } from 'src/app/products/models/book.model';
 import { CartService } from '../../services/cart.service';
 
+
 @Component({
   selector: 'app-cart-item',
   templateUrl: './cart-item.component.html',
@@ -15,10 +16,12 @@ export class CartItemComponent implements OnInit {
 
    @Output()
    decreaseQ: EventEmitter<CartItemModel> = new EventEmitter<CartItemModel>();
+
    @Output()
    increaseQ: EventEmitter<CartItemModel> = new EventEmitter<CartItemModel>();
 
-
+   @Output()
+   delCartItem: EventEmitter<CartItemModel> = new EventEmitter<CartItemModel>();
 
   ngOnInit() {
   }
@@ -29,7 +32,10 @@ export class CartItemComponent implements OnInit {
 
   decrQuantity(){
     this.decreaseQ.emit(this.item);
+  }
 
+  onDelItem(){
+    this.delCartItem.emit(this.item);
   }
 
 

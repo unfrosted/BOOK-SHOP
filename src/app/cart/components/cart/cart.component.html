@@ -1,8 +1,13 @@
-<h1>
-  cart
-</h1>
-<app-cart-item *ngFor="let item of cartItems" [item]="item" (increaseQ)="onIncreaseQ($event)" (decreaseQ)="onDecreaseQ($event)">
+<div *ngIf="cartItems.length>0">
+  <h1>Cart</h1>
+<app-cart-item *ngFor="let item of cartItems"
+ [item]="item"
+ (increaseQ)="onIncreaseQ($event)"
+ (decreaseQ)="onDecreaseQ($event)"
+ (delCartItem)="onDel($event)"
+>
 
 </app-cart-item>
 
 <button class="btn btn-primary">Process Order</button>
+</div>
