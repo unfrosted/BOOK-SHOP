@@ -31,5 +31,16 @@ onDecreaseQ(item: CartItemModel) {
   this.cartService.incQuantity(item);
 }
 
+getTotalPrice() {
 
+  return this.cartService.totalPrice;
+}
+
+getTotalQuantity() {
+  return this.cartService.totalQuantity;
+}
+
+onCreateOrder(){
+  console.log(this.cartService.getCartItems());
+}
 }

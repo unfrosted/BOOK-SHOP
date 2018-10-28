@@ -8,6 +8,8 @@
 >
 
 </app-cart-item>
+<p>Price: {{getTotalPrice()| currency}}</p> <br>
+<p>Quantity: {{getTotalQuantity()}}</p>
+<button class="btn btn-primary" (click)="onCreateOrder()">Process Order</button>
 
-<button class="btn btn-primary">Process Order</button>
 </div>
